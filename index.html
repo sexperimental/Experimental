@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimental</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <mainTitle>Experimental</mainTitle>
+        <subTitle><span>M</span><span>a</span><span>d</span><span>e</span> <span>b</span><span>y</span> <span>S</span><span>e</span><span>n</span><span>p</span><span>a</span><span>i</span></subTitle>
+    </header>
+    <info>
+        <infoText>This is a tool to evaluate users selected from discord id.</infoText>
+    </info>
+
+    <section>
+        <input type="text" class="searchbox" id="discordId" spellcheck="false" placeholder="Enter discord id here.">
+        <div class="result" id="result"></div>
+        <div id="loading" class="loader" style="display: none;"></div>
+        <button id="searchButton">
+            <img src="images/search.png" alt="Search">
+        </button>
+    </section>
+
+    <script>
+        document.getElementById('discordId').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                searchDiscordUser();
+            }
+        });
+
+        document.getElementById("searchButton").addEventListener("click", function() {
+            searchDiscordUser();
+        });
+
+        function searchDiscordUser() {
+            const discordId = document.getElementById('discordId').value.trim();
+            const resultContainer = document.getElementById('result');
+            const loadingIndicator = document.getElementById('loading');
+            const url = `https://discordlookup.mesalytic.moe/v1/user/${discordId}`;
+
+            resultContainer.innerHTML = ''; 
+            loadingIndicator.style.display = 'block';
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Could not get user info.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    setTimeout(() => {  
+                        loadingIndicator.style.display = 'none'; 
+                        if (data.name === undefined && data.id === undefined) {
+                            resultContainer.innerHTML = `<div style="color: rgb(255, 255, 255); position: absolute; top: 65vh; left: 50vw; transform: translate(-50%, -50%); z-index: 10; font-family: Regular"> Couldn't find user.</div>`;
+                        } else {
+                            resultContainer.innerHTML = `
+                                <div class="background">
+                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.8vw; margin-top: -150px;"> User infomation
+                                    <div class="line" div style= "margin-top: 10px"></div>
+                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 15px;"> Global name: ${data.global_name}</div>
+                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 45px;"> Name: ${data.username}</div>
+                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 75px;"> User ID: ${data.id}</div>
+                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 105px;"> Bot: ${data.raw.bot !== undefined ? data.raw.bot : false}</div>                               
+                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 135px;"> Account created data: ${new Date(data.created_at).toLocaleDateString()}</div>
+                                </div>
+                            `;
+                        }
+                    }, 700);
+                })
+                .catch(error => {
+                    setTimeout(() => { 
+                        loadingIndicator.style.display = 'none';
+                        resultContainer.innerHTML = `<p class="error resultText">${error.message}</p>`;
+                    }, 700);
+                });
+        }
+    </script>
+
+</body>
+</html>
