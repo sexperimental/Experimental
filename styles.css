@@ -47,8 +47,8 @@ userText {
 
 userInfoText {
     position: absolute;
-    top: 55%;
-    left: 50%;
+    top: 55vh;
+    left: 50vw;
     transform: translate(-50%, -50%);
     font-family: Regular;
     color: rgb(255, 255, 255); 
