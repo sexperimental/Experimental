@@ -195,17 +195,47 @@ infoText {
     font-size: 0.7vw;
     color: rgba(255,255,255,.70);
 }
-  
+
 infoText {
     animation: animated-text 8s steps(29,end) 2s 1 normal both,
                animated-cursor 600ms steps(29,end) infinite;
 }
-    
-  @keyframes animated-text{
+
+@keyframes animated-text {
     from{width: 0;}
     to{width: 472px;}
 }
-    
-  @keyframes animated-cursor{
+
+@keyframes animated-cursor {
     to{border-right-color: transparent;}
+}
+
+@media (max-width: 768px) {
+    mainTitle {
+        font-size: 6vw;
+    }
+
+    infoText {
+        font-size: 4vw;
+    }
+
+    .searchbox {
+        width: 80vw;
+        height: 8vh;
+        font-size: 4vw;
+    }
+
+    #searchButton {
+        width: 12vw;
+        height: 12vh;
+    }
+
+    .background {
+        width: 75vw;
+        height: 35vh;
+    }
+
+    .line {
+        width: 70vw;
+    }
 }
