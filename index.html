@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Experimental</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -60,14 +60,14 @@
                         } else {
                             resultContainer.innerHTML = `
                                 <div class="background">
-                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.8vw; margin-top: -150px;"> User infomation
+                                    <userText>User information
                                     <div class="line" div style= "margin-top: 10px"></div>
-                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 15px;"> Global name: ${data.global_name}</div>
-                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 45px;"> Name: ${data.username}</div>
-                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 75px;"> User ID: ${data.id}</div>
-                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 105px;"> Bot: ${data.raw.bot !== undefined ? data.raw.bot : false}</div>                               
-                                    <div style="color: rgb(255, 255, 255); position: absolute; font-family: Regular; font-size: 0.7vw; margin-top: 135px;"> Account created data: ${new Date(data.created_at).toLocaleDateString()}</div>
-                                </div>
+                                    <userInfoText>Global name: ${data.global_name}</userInfoText>
+                                    <userInfoText>Name: ${data.username}</userInfoText>
+                                    <userInfoText>User ID: ${data.id}</userInfoText>
+                                    <userInfoText>Bot: ${data.raw.bot !== undefined ? data.raw.bot : false}</userInfoText>
+                                    <userInfoText>Account created data: ${new Date(data.created_at).toLocaleDateString()}</userInfoText>
+                                </userText></div>
                             `;
                         }
                     }, 700);
@@ -79,6 +79,12 @@
                     }, 700);
                 });
         }
+    </script>
+
+    <script>
+    if (navigator.platform.indexOf('Win') !== -1) {
+        document.documentElement.classList.add('windows');
+    }
     </script>
 
 </body>
