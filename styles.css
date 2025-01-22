@@ -19,7 +19,6 @@ body {
     background-color: rgb(21, 21, 21);
 }
 
-/* メタタグをHTMLの<head>に追加してください */
 @viewport {
     width: device-width;
     initial-scale: 1;
@@ -35,17 +34,6 @@ mainTitle {
     transform: translate(-50%, -50%);
     font-family: 'Bold';
     font-size: 2.5vw;
-    z-index: 10;
-}
-
-infoText {
-    color: rgb(200, 200, 200);
-    position: absolute;
-    top: 50vh;
-    left: 50vw;
-    transform: translate(-50%, -50%);
-    font-family: 'Bold';
-    font-size: 0.7vw;
     z-index: 10;
 }
 
@@ -228,30 +216,28 @@ subTitle span:nth-child(12) { animation-delay: 1.1s; }
 }
 
 infoText {
+    color: rgb(200, 200, 200);
     position: absolute;
-    top: 50vh;
+    top: 51vh;
     left: 50vw;
+    transform: translate(-50%, -50%);
+    font-size: 0.7vw;
+    font-family: 'Source Code Pro';
     white-space: nowrap;
     overflow: hidden;
-    font-family: 'Source Code Pro';
-    font-size: 0.7vw;
-    color: rgba(255,255,255,.70);
+    width: 0;
+    animation: typewriter 4s steps(40) 1s forwards;
 }
 
-infoText {
-    animation: animated-text 8s steps(29,end) 2s 1 normal both,
-               animated-cursor 600ms steps(29,end) infinite;
+@keyframes typewriter {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 25%;
+    }
 }
 
-
-@keyframes animated-text {
-    from{width: 0;}
-    to{width: 472px;}
-}
-
-@keyframes animated-cursor {
-    to{border-right-color: transparent;}
-}
 
 @media (max-width: 768px) and (pointer: coarse)  {
     
@@ -278,37 +264,26 @@ infoText {
         height: 0vh;
     }
 
-
     infoText {
+        color: rgb(200, 200, 200);
         position: absolute;
         top: 51vh;
-        left: 50%;
+        left: 50vw;
         transform: translate(-50%, -50%);
         font-size: 2.5vw;
+        font-family: 'Source Code Pro';
         white-space: nowrap;
         overflow: hidden;
-        font-family: 'Source Code Pro';
-        color: rgba(255, 255, 255, 0.7);
-        max-width: 86%;
-        width: auto;
-        animation: animated-text-mobile 8s steps(29, end) 2s 1 normal both,
-        animated-cursor 600ms steps(29, end) infinite;
-    }
-
-    @keyframes animated-text-mobile {
-        from {
-            width: 0;
-            transform: translate(-50%, -50%);
-        }
-        to {
-            width: 86%;
-            transform: translate(-50%, -50%);
-        }
+        width: 0;
+        animation: typewriter 4s steps(40) 1s forwards;
     }
     
-    @keyframes animated-cursor {
-        to {
-            border-right-color: transparent;
+    @keyframes typewriter {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: 86%;
         }
     }
 
