@@ -58,9 +58,12 @@ userText {
 }
 
 userInfoText {
-    color: rgb(255, 255, 255); 
     position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-family: Regular;
+    color: rgb(255, 255, 255); 
     font-size: 0.7vw; 
     margin-top: 15px;
 }
@@ -228,7 +231,6 @@ infoText {
     position: absolute;
     top: 50vh;
     left: 50vw;
-    transform: translate(-50%, -50%);
     white-space: nowrap;
     overflow: hidden;
     font-family: 'Source Code Pro';
@@ -251,7 +253,7 @@ infoText {
     to{border-right-color: transparent;}
 }
 
-@media (max-width: 768px)  {
+@media (max-width: 768px) and (pointer: coarse)  {
     
     mainTitle {
         font-size: 8vw;
@@ -276,13 +278,38 @@ infoText {
         height: 0vh;
     }
 
+
     infoText {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         font-size: 2.5vw;
+        white-space: nowrap;
+        overflow: hidden;
+        font-family: 'Source Code Pro';
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 86%;
+        width: auto;
+        animation: animated-text-mobile 8s steps(29, end) 2s 1 normal both,
+        animated-cursor 600ms steps(29, end) infinite;
     }
 
-    @keyframes animated-text {
-        from{width: 0;}
-        to{width: 375px;}
+    @keyframes animated-text-mobile {
+        from {
+            width: 0;
+            transform: translate(-50%, -50%);
+        }
+        to {
+            width: 86%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    
+    @keyframes animated-cursor {
+        to {
+            border-right-color: transparent;
+        }
     }
 
     .loader {
