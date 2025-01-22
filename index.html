@@ -59,15 +59,12 @@
                             resultContainer.innerHTML = `<div style="color: rgb(255, 255, 255); position: absolute; top: 65vh; left: 50vw; transform: translate(-50%, -50%); z-index: 10; font-family: Regular"> Couldn't find user.</div>`;
                         } else {
                             resultContainer.innerHTML = `
-                                <div class="background">
-                                    <userText>User information
-                                    <div class="line" div style= "margin-top: 10px"></div>
+                                    <userText>User information</userText>
                                     <userInfoText>Global name: ${data.global_name}</userInfoText>
                                     <userInfoText>Name: ${data.username}</userInfoText>
                                     <userInfoText>User ID: ${data.id}</userInfoText>
                                     <userInfoText>Bot: ${data.raw.bot !== undefined ? data.raw.bot : false}</userInfoText>
                                     <userInfoText>Account created data: ${new Date(data.created_at).toLocaleDateString()}</userInfoText>
-                                </userText></div>
                             `;
                         }
                     }, 700);
@@ -79,6 +76,7 @@
                     }, 700);
                 });
         }
+        
     </script>
 
     <script>
