@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Experimental</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <header>
         <mainTitle>Experimental</mainTitle>
         <subTitle><span>M</span><span>a</span><span>d</span><span>e</span> <span>b</span><span>y</span> <span>S</span><span>e</span><span>n</span><span>p</span><span>a</span><span>i</span></subTitle>
     </header>
+
     <info>
         <infoText>This is a tool to evaluate users selected from discord id.</infoText>
     </info>
@@ -26,13 +29,13 @@
     </section>
 
     <script>
-        document.getElementById('discordId').addEventListener('keydown', function(event) {
+        document.getElementById('discordId').addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
                 searchDiscordUser();
             }
         });
 
-        document.getElementById("searchButton").addEventListener("click", function() {
+        document.getElementById("searchButton").addEventListener("click", function () {
             searchDiscordUser();
         });
 
@@ -42,7 +45,7 @@
             const loadingIndicator = document.getElementById('loading');
             const url = `https://discordlookup.mesalytic.moe/v1/user/${discordId}`;
 
-            resultContainer.innerHTML = ''; 
+            resultContainer.innerHTML = '';
             loadingIndicator.style.display = 'block';
 
             fetch(url)
@@ -53,36 +56,28 @@
                     return response.json();
                 })
                 .then(data => {
-                    setTimeout(() => {  
-                        loadingIndicator.style.display = 'none'; 
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
                         if (data.name === undefined && data.id === undefined) {
                             resultContainer.innerHTML = `<div style="color: rgb(255, 255, 255); position: absolute; top: 65vh; left: 50vw; transform: translate(-50%, -50%); z-index: 10; font-family: Regular"> Couldn't find user.</div>`;
                         } else {
                             resultContainer.innerHTML = `
-                                    <userText>User information</userText>
-                                    <userInfoText>Global name: ${data.global_name}</userInfoText>
-                                    <userInfoText>Name: ${data.username}</userInfoText>
-                                    <userInfoText>User ID: ${data.id}</userInfoText>
-                                    <userInfoText>Bot: ${data.raw.bot !== undefined ? data.raw.bot : false}</userInfoText>
-                                    <userInfoText>Account created data: ${new Date(data.created_at).toLocaleDateString()}</userInfoText>
+                                <userInfoText>Global name: ${data.global_name}</userInfoText>
+                                <userInfoText>Name: ${data.username}</userInfoText>
+                                <userInfoText>User ID: ${data.id}</userInfoText>
+                                <userInfoText>Bot: ${data.raw.bot !== undefined ? data.raw.bot : false}</userInfoText>
+                                <userInfoText>Account created date: ${new Date(data.created_at).toLocaleDateString()}</userInfoText>
                             `;
                         }
                     }, 700);
                 })
                 .catch(error => {
-                    setTimeout(() => { 
+                    setTimeout(() => {
                         loadingIndicator.style.display = 'none';
                         resultContainer.innerHTML = `<p class="error resultText">${error.message}</p>`;
                     }, 700);
                 });
         }
-        
-    </script>
-
-    <script>
-    if (navigator.platform.indexOf('Win') !== -1) {
-        document.documentElement.classList.add('windows');
-    }
     </script>
 
 </body>
