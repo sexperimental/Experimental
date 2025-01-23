@@ -51,7 +51,7 @@ h2 span:nth-child(12) { animation-delay: 1.1s; }
 h3 {
     color: rgb(200, 200, 200);
     position: absolute;
-    top: 52%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1vw;
@@ -153,6 +153,7 @@ h4:nth-of-type(5) {
         width: 70vw;
         height: 2.5vh;
         font-size: 2vw;
+        top: 48%;
     }
 
     .loader {
