@@ -9,34 +9,19 @@
 </head>
 
 <body>
+    <h1>Experimental</h1>
+    <h2>Made by Senpai</h2>
+    <input type="text" class="b1" id="discordId" spellcheck="false" placeholder="Enter discord id here.">
+    <h3>This is a tool to evaluate users selected from discord id.</h3>
 
-    <header>
-        <mainTitle>Experimental</mainTitle>
-        <subTitle><span>M</span><span>a</span><span>d</span><span>e</span> <span>b</span><span>y</span> <span>S</span><span>e</span><span>n</span><span>p</span><span>a</span><span>i</span></subTitle>
-    </header>
-
-    <info>
-        <infoText>This is a tool to evaluate users selected from discord id.</infoText>
-    </info>
-
-    <section>
-        <input type="text" class="searchbox" id="discordId" spellcheck="false" placeholder="Enter discord id here.">
-        <div class="result" id="result"></div>
-        <div id="loading" class="loader" style="display: none;"></div>
-        <button id="searchButton">
-            <img src="images/search.png" alt="Search">
-        </button>
-    </section>
-
+    <div class="result" id="result"></div>
+    <div id="loading" class="loader" style="display: none;"></div>
+    
     <script>
         document.getElementById('discordId').addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
                 searchDiscordUser();
             }
-        });
-
-        document.getElementById("searchButton").addEventListener("click", function () {
-            searchDiscordUser();
         });
 
         function searchDiscordUser() {
@@ -62,11 +47,11 @@
                             resultContainer.innerHTML = `<div style="color: rgb(255, 255, 255); position: absolute; top: 65vh; left: 50vw; transform: translate(-50%, -50%); z-index: 10; font-family: Regular"> Couldn't find user.</div>`;
                         } else {
                             resultContainer.innerHTML = `
-                                <userInfoText>Global name: ${data.global_name}</userInfoText>
-                                <userInfoText>Name: ${data.username}</userInfoText>
-                                <userInfoText>User ID: ${data.id}</userInfoText>
-                                <userInfoText>Bot: ${data.raw.bot !== undefined ? data.raw.bot : false}</userInfoText>
-                                <userInfoText>Account created date: ${new Date(data.created_at).toLocaleDateString()}</userInfoText>
+                                <h4>Global name: ${data.global_name}</h4>
+                                <h4>Name: ${data.username}</h4>
+                                <h4>User ID: ${data.id}</h4>
+                                <h4>Bot: ${data.raw.bot !== undefined ? data.raw.bot : false}</h4>
+                                <h4>Account created date: ${new Date(data.created_at).toLocaleDateString()}</h4>
                             `;
                         }
                     }, 700);
@@ -79,6 +64,4 @@
                 });
         }
     </script>
-
 </body>
-</html>
